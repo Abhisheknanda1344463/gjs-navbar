@@ -11,86 +11,40 @@ export default (editor, opt = {}) => {
   const navbarPfx = c.navbarClsPfx || 'navbar';
   const style = c.defaultStyle ? `
   <style>
-    .${navbarPfx}-items-c {
-      display: inline-block;
-      float: right;
+    .gpd-navbar{
+      width:100%;
     }
 
-    .${navbarPfx} {
-      background-color: #222;
-      color: #ddd;
-      min-height: 50px;
-      width: 100%;
+    .gpd-navbar__menu{
+      display:none;
     }
 
-    .${navbarPfx}-container {
-      max-width: 950px;
-      margin: 0 auto;
-      width: 95%;
+    .gpd-navbar__item{
+      flex:0 1 auto;
     }
 
-    .${navbarPfx}-container::after {
-      content: "";
-      clear: both;
-      display: block;
+    .gpd-navbar__item-link{
+      color:inherit;
+      text-decoration:none;
     }
 
-    .${navbarPfx}-brand {
-      vertical-align: top;
-      display: inline-block;
-      padding: 5px;
-      min-height: 50px;
-      min-width: 50px;
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .${navbarPfx}-menu {
-      padding: 10px 0;
-      display: block;
-      float: right;
-      margin: 0;
-    }
-
-    .${navbarPfx}-menu-link {
-      margin: 0;
-      color: inherit;
-      text-decoration: none;
-      display: inline-block;
-      padding: 10px 15px;
-    }
-
-    .${navbarPfx}-burger {
-      margin: 10px 0;
-      width: 45px;
-      padding: 5px 10px;
-      display: none;
-      float: right;
-      cursor: pointer;
-    }
-
-    .${navbarPfx}-burger-line {
-      padding: 1px;
-      background-color: white;
-      margin: 5px 0;
-    }
 
     @media (max-width: 768px) {
-      .${navbarPfx}-burger {
-        display: block;
+      .gpd-navbar__menu{
+        display:block;
       }
-
-      .${navbarPfx}-items-c {
-        display: none;
-        width: 100%;
+      .gpd-navbar__items{
+        display:none;
+        width:100%;
       }
-
-      .${navbarPfx}-menu {
-        width: 100%;
+      .gpd-navbar__items-grid{
+        flex-wrap:wrap;
       }
-
-      .${navbarPfx}-menu-link {
-        display: block;
+      .gpd-navbar__item{
+        flex:1 1 100%;
+      }
+      .gpd-navbar__item-link{
+        width:100%;
       }
     }
   </style>
@@ -108,27 +62,35 @@ export default (editor, opt = {}) => {
         <div class="gjs-block-label">${c.labelNavbarBlock}</div>`,
       category: c.labelNavbarCategory,
       content: `
-        <div class="${navbarPfx}" data-gjs-droppable="false" data-gjs-custom-name="${c.labelNavbar}" data-gjs="${navbarRef}">
-          <div class="${navbarPfx}-container" data-gjs-droppable="false" data-gjs-draggable="false"
-            data-gjs-removable="false" data-gjs-copyable="false" data-gjs-highlightable="false"
-            data-gjs-custom-name="${c.labelNavbarContainer}">
+        <div class="gpd-navbar">
+          <div style="padding:0;" class="gjs-container gpd-cnt">
+            <div style= "justify-content:space-between;align-items:center;min-height:auto;" class="gjs-row gjs-grid">
+              <div style = "flex:0 1 auto;" class="cell gjs-clm">
+                <a style = "min-height:25px;min-width:25px;" class="gjs-link-box"><div>Brand Logo
+                  </div></a>
+              </div>
 
-            <a href="/" class="${navbarPfx}-brand" data-gjs-droppable="true"></a>
+              <div style= "flex:0 1 auto;" class="cell gpd-navbar__menu">
+                <a style= "width:35px;height:35px;cursor:pointer;" class="gpd-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z">
+                  </path>
+                  </svg></a>
+              </div>
 
-            <div class="${navbarPfx}-burger" data-gjs-type="burger-menu">
-              <div class="${navbarPfx}-burger-line" data-gjs-custom-name="${c.labelBurgerLine}" data-gjs-droppable="false" data-gjs-draggable="false"></div>
-              <div class="${navbarPfx}-burger-line" data-gjs-custom-name="${c.labelBurgerLine}" data-gjs-droppable="false" data-gjs-draggable="false"></div>
-              <div class="${navbarPfx}-burger-line" data-gjs-custom-name="${c.labelBurgerLine}" data-gjs-droppable="false" data-gjs-draggable="false"></div>
+              <div style="flex:0 1 auto;" data-gjs-type="burger-menu" class="cell gpd-navbar__items">
+                <div style = "align-items:center;min-height:auto;" class="gjs-row gpd-navbar__items-grid">
+                  <div class="cell gpd-navbar__item">
+                    <a class="gpd-navbar__item-link">Home</a>
+                  </div>
+                  <div class="cell gpd-navbar__item">
+                    <a class="gpd-navbar__item-link">About</a>
+                  </div>
+                  <div class="cell gpd-navbar__item">
+                    <a class="gpd-navbar__item-link">Contact</a>
+                  </div>
+                </div>
+              </div
             </div>
-
-            <div class="${navbarPfx}-items-c" data-gjs="${navbarItemsRef}">
-              <nav class="${navbarPfx}-menu" data-gjs="${menuRef}" data-gjs-custom-name="${c.labelMenu}">
-                <a href="#" class="${navbarPfx}-menu-link" data-gjs-custom-name="${c.labelMenuLink}" data-gjs-draggable="[data-gjs=${menuRef}]">${c.labelHome}</a>
-                <a href="#" class="${navbarPfx}-menu-link" data-gjs-custom-name="${c.labelMenuLink}" data-gjs-draggable="[data-gjs=${menuRef}]">${c.labelAbout}</a>
-                <a href="#" class="${navbarPfx}-menu-link" data-gjs-custom-name="${c.labelMenuLink}" data-gjs-draggable="[data-gjs=${menuRef}]">${c.labelContact}</a>
-              </nav>
-            </div>
-
           </div>
         </div>
         ${style}

@@ -10,10 +10,10 @@ export default (editor, opt = {}) => {
       defaults: {
         ...defaultModel.prototype.defaults,
         'custom-name': c.labelBurger,
-        draggable: false,
-        droppable: false,
-        copyable: false,
-        removable: false,
+        // draggable: false,
+        // droppable: false,
+        // copyable: false,
+        // removable: false,
         script: function () {
           var transEndAdded;
           var isAnimating = 0;
@@ -95,8 +95,8 @@ export default (editor, opt = {}) => {
               return;
             }
 
-            var navParent = this.closest(`[data-gjs=navbar]`);
-            var navItems = navParent.querySelector(`[data-gjs=navbar-items]`);
+            var navParent = this.closest(`.gpd-navbar`);
+            var navItems = navParent.querySelector(`.gpd-navbar__items`);
             toggleSlide(navItems);
 
             if (!transEndAdded) {
