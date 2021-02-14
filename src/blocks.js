@@ -62,31 +62,30 @@ export default (editor, opt = {}) => {
         <div class="gjs-block-label">${c.labelNavbarBlock}</div>`,
       category: c.labelNavbarCategory,
       content: `
-        <div class="gpd-navbar">
-          <div style="padding:0;" class="gjs-container gpd-cnt">
-            <div style= "justify-content:space-between;align-items:center;min-height:auto;" class="gjs-row gjs-grid">
-              <div style = "flex:0 1 auto;" class="cell gjs-clm">
-                <a style = "min-height:25px;min-width:25px;" class="gjs-link-box"><div>Brand Logo
+        <div class="gpd-navbar" data-gjs-type="navbar">
+          <div style="padding:0;" data-gjs-type="container" class="gjs-container gpd-cnt">
+            <div style= "justify-content:space-between;align-items:center;min-height:auto;" class="gjs-row gjs-grid"  data-gjs-name= "Grid" data-gjs-type="grid-row">
+              <div style = "flex:0 1 auto;" class="cell gjs-clm" data-gjs-type= "grid-item" data-gjs-name= "Column">
+                <a style = "min-height:25px;min-width:25px;" data-gjs-type="link-box" class="gjs-link-box"><div data-gjs-type="text">Brand Logo
                   </div></a>
               </div>
 
-              <div style= "flex:0 1 auto;" class="cell gpd-navbar__menu">
-                <a style= "width:35px;height:35px;cursor:pointer;" class="gpd-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z">
+              <div style= "flex:0 1 auto;" class="cell gpd-navbar__menu" data-gjs-type="grid-item">
+                <a style= "width:35px;height:35px;cursor:pointer;" data-gjs-type="navbar-menu-icon" class="gpd-icon"><svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;" viewBox="0 0 24 24"><path data-gjs-type="svg-in" d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z">
                   </path>
                   </svg></a>
               </div>
 
-              <div style="flex:0 1 auto;" data-gjs-type="burger-menu" class="cell gpd-navbar__items">
-                <div style = "align-items:center;min-height:auto;" class="gjs-row gpd-navbar__items-grid">
-                  <div class="cell gpd-navbar__item">
-                    <a class="gpd-navbar__item-link">Home</a>
+              <div style="flex:0 1 auto;" data-gjs-type="grid-item" class="cell gpd-navbar__items">
+                <div style = "align-items:center;min-height:auto;"  data-gjs-type="grid-row" class="gjs-row gpd-navbar__items-grid">
+                  <div class="cell gpd-navbar__item" data-gjs-name="Column" data-gjs-type="grid-item">
+                    <a data-gjs-type="link" class="gpd-navbar__item-link">Home</a>
                   </div>
-                  <div class="cell gpd-navbar__item">
-                    <a class="gpd-navbar__item-link">About</a>
+                  <div  data-gjs-type = "grid-item" data-gjs-name="Column" class="cell gpd-navbar__item">
+                    <a data-gjs-type="link" class="gpd-navbar__item-link">About</a>
                   </div>
-                  <div class="cell gpd-navbar__item">
-                    <a class="gpd-navbar__item-link">Contact</a>
+                  <div data-gjs-type = "grid-item" data-gjs-name="Column" class="cell gpd-navbar__item">
+                    <a data-gjs-type="link" class="gpd-navbar__item-link">Contact</a>
                   </div>
                 </div>
               </div

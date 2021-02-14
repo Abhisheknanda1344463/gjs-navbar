@@ -16,7 +16,7 @@ export default grapesjs.plugins.add('gjs-navbar', (editor, opts = {}) => {
     labelNavbarContainer: 'Navbar Container',
     labelMenu: 'Navbar Menu',
     labelMenuLink: 'Menu link',
-    labelBurger: 'Burger',
+    labelMenu: 'NavBar Menu',
     labelBurgerLine: 'Burger Line',
     labelNavbarBlock: 'Navbar',
     labelNavbarCategory: 'Extra',

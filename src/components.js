@@ -3,17 +3,17 @@ export default (editor, opt = {}) => {
   const dc = editor.DomComponents;
   const defaultType = dc.getType('default');
   const defaultModel = defaultType.model;
-  const burgerType = 'burger-menu';
+  const menuType = 'navbar-menu-icon';
 
-  dc.addType(burgerType, {
+  dc.addType(menuType, {
     model: defaultModel.extend({
       defaults: {
         ...defaultModel.prototype.defaults,
-        'custom-name': c.labelBurger,
-        // draggable: false,
+        'custom-name': c.labelMenu,
+        draggable: false,
         // droppable: false,
-        // copyable: false,
-        // removable: false,
+        copyable: false,
+        removable: false,
         script: function () {
           var transEndAdded;
           var isAnimating = 0;
@@ -122,11 +122,42 @@ export default (editor, opt = {}) => {
     }, {
       isComponent(el) {
         if(el.getAttribute &&
-          el.getAttribute('data-gjs-type') == burgerType) {
-          return {type: burgerType};
+          el.getAttribute('data-gjs-type') == menuType) {
+          return {type: menuType};
         }
       },
     }),
     view: defaultType.view,
   });
+
+  dc.addType('navbar',{
+    model:{
+      defaults:{
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 9c0-.6-.5-1-1.3-1H3.4C2.5 8 2 8.4 2 9v6c0 .6.5 1 1.3 1h17.4c.8 0 1.3-.4 1.3-1V9zm-1 6H3V9h18v6zM5 10h2c.6 0 1 .4 1 1v2c0 .6-.4 1-1 1H5a1 1 0 01-1-1v-2c0-.6.4-1 1-1zm10 0h5v1h-5v-1zm0 3h5v1h-5v-1zm0-1.5h5v1h-5v-1z"></path></svg>`,
+        'custom-name': 'Navbar',
+        traits: [
+          {
+            name: 'position',
+            label: 'Positon',
+            type: 'select',
+            options: [
+              {value: 'default', name: 'Default'},
+              {value: 'detached', name: 'Detached'},
+              {value: 'sticky', name: 'sticky'}
+            ],
+          }
+        ]
+      },
+      init(){
+        this.listenTo(this.model, 'default', this.changePos)
+      },
+      changePos(){
+        const post = this.get('position');
+        if (post === 'detached') {
+          $('.gpd-navbar').addStyle({"position" :"absolute"});
+          $('.gpd-Navbar').addStyle({"z-index:10;" :"10"});
+        }
+      }
+    }
+  })
 }
