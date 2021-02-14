@@ -149,13 +149,14 @@ export default (editor, opt = {}) => {
         ]
       },
       init(){
-        this.listenTo(this.model, 'default', this.changePos)
+        this.on('change:position', this.changePos);
       },
       changePos(){
         const post = this.get('position');
+        console.log(post);
         if (post === 'detached') {
-          $('.gpd-navbar').addStyle({"position" :"absolute"});
-          $('.gpd-Navbar').addStyle({"z-index:10;" :"10"});
+          this.addStyle({"position" :"absolute"});
+          this.addStyle({"z-index:10;" :"10"});
         }
       }
     }
